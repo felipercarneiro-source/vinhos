@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Vinhos da América Latina · Felipe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+:root{
+  --paper:#EFEEE9; --paper2:#E4E2DA; --line:#D3D0C6; --card:#F7F6F2;
+  --ink:#17212B; --ink2:#5C6672; --ink3:#8A929C;
+  --ai:#5B2333; --ai-soft:#EAD9DD;
+  --shu:#A93A27; --kohaku:#8C5F14; --matsu:#2F6455;
+  --shadow:0 1px 2px rgba(23,33,43,.06),0 6px 18px -12px rgba(23,33,43,.28);
+  --r:11px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#161114; --paper2:#211a1e; --line:#3a2e33; --card:#241c20;
+    --ink:#EDE7E2; --ink2:#A79CA0; --ink3:#7d7276;
+    --ai:#D48A9B; --ai-soft:#3d2630;
+    --shu:#E28067; --kohaku:#D5A257; --matsu:#63B8A0;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 22px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#161114; --paper2:#211a1e; --line:#3a2e33; --card:#241c20;
+  --ink:#EDE7E2; --ink2:#A79CA0; --ink3:#7d7276;
+  --ai:#D48A9B; --ai-soft:#3d2630;
+  --shu:#E28067; --kohaku:#D5A257; --matsu:#63B8A0;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 22px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Zen Kaku Gothic New",system-ui,sans-serif;
+  font-size:14.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px 80px}
+header{padding:44px 0 26px;border-bottom:1px solid var(--line)}
+.kicker{font-size:11.5px;letter-spacing:.19em;text-transform:uppercase;color:var(--ink3);font-weight:700}
+h1{font-family:"Zen Old Mincho",Georgia,serif;font-weight:900;letter-spacing:-.02em;
+   font-size:clamp(30px,5vw,46px);margin:8px 0 0;line-height:1.08}
+.lede{margin:18px 0 0;max-width:64ch;font-size:16.5px;color:var(--ink2);text-wrap:pretty}
+.lede b{color:var(--ink);font-weight:700}
+.nota{margin:14px 0 0;max-width:72ch;font-size:13px;color:var(--ink3);line-height:1.6}
+.nota b{color:var(--ink2);font-weight:700}
+.stats{display:flex;gap:34px;margin-top:22px;flex-wrap:wrap}
+.stat b{display:block;font-family:"Zen Old Mincho",serif;font-size:34px;line-height:1}
+.stat span{font-size:12.5px;color:var(--ink3);letter-spacing:.04em}
+.tabs{display:flex;gap:9px;position:sticky;top:0;background:var(--paper);z-index:5;
+  border-bottom:1px solid var(--line);padding:12px 0 10px;margin-bottom:6px;flex-wrap:wrap}
+.tab{font:inherit;font-size:14px;font-weight:700;padding:9px 16px;border-radius:999px;
+  border:2px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.tab.on{border-color:var(--ai);background:var(--ai);color:#fff}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 4px;align-items:center}
+.flab{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink3);font-weight:700;margin-right:2px}
+.chip{font:inherit;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.chip:hover{border-color:var(--ai);color:var(--ink)}
+.chip.on{border-color:var(--ai);background:var(--ai);color:#fff}
+.legend{margin:12px 0 14px;font-size:12.5px;color:var(--ink3)}
+.legend .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin:0 4px 0 10px;vertical-align:-1px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-top:12px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+   padding:14px 15px 13px;box-shadow:var(--shadow);position:relative;
+   border-left:4px solid var(--line)}
+.c.pr1{border-left-color:#2F8A57;background:color-mix(in srgb,#3FA36A 22%,var(--card))}
+.c.pr2{border-left-color:#D97A3E;background:color-mix(in srgb,#E8955C 26%,var(--card))}
+.c.pr3{border-left-color:#8A93A0;background:color-mix(in srgb,#8A93A0 26%,var(--card))}
+.c.pr4{border-left-color:#B98A1C;background:color-mix(in srgb,#C99C2E 30%,var(--card))}
+.badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;
+  text-transform:uppercase;padding:3px 8px;border-radius:999px;margin:0 4px 7px 0}
+.badge.duo{background:#24467C;color:#fff}
+.badge.pin{background:#5B2333;color:#fff}
+.cn{font-family:"Zen Old Mincho",serif;font-size:18px;font-weight:800;line-height:1.2;
+    letter-spacing:-.01em;text-wrap:balance}
+.cloc{font-size:12.5px;color:var(--ink3);margin-top:5px}
+.cloc .t{color:var(--ink2);font-weight:700}
+.cesp{font-size:13.5px;color:var(--ink2);margin-top:6px;line-height:1.45}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.tag{font-size:11.5px;font-weight:700;padding:3px 8px;border-radius:5px;
+     border:1px solid var(--line);color:var(--ink2);background:var(--paper2)}
+.tag.yen{font-variant-numeric:tabular-nums}
+.who{margin-top:9px;font-size:12.5px;color:var(--ink2);
+     border-top:1px dashed var(--line);padding-top:8px}
+.who b{color:var(--ai);font-weight:700}
+.who .lbl{color:var(--ink3);font-weight:400}
+.acts{margin-top:8px;font-size:12.5px}
+.acts a{color:var(--ai);font-weight:700;text-decoration:none}
+.acts a:hover{text-decoration:underline}
+.people{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));margin-top:16px}
+.p{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:13px 14px}
+.p b{font-family:"Zen Old Mincho",serif;font-size:16px}
+.p .h{color:var(--ai);font-weight:700;font-size:12.5px}
+.p .d{font-size:12.5px;color:var(--ink2);margin-top:5px;line-height:1.5}
+.p .disc{font-size:11.5px;color:var(--kohaku);margin-top:6px}
+footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;
+  font-size:12.5px;color:var(--ink3);line-height:1.7}
+footer a{color:var(--ink2)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div class="kicker">Guia pessoal · América Latina · atualizado em 17 set 2026</div>
+ <h1>Vinhos que valem o valor</h1>
+ <p class="lede">Custo-benefício da América do Sul filtrado por <b>gente que entende</b>:
+ a prateleira e os posts do <b>Angelo Luchese</b>, e a importadora do <b>Raul (Zero Onze)</b>
+ pros naturais. <b>Pinot é a minha uva</b> — mas os argentinos têm blends, cabernets e
+ malbecs demais pra ignorar.</p>
+ <p class="nota"><b>Leia assim:</b> Angelo vende (a loja é da família dele — cupom <b>angelo15</b>)
+ e o Raul importa. É vitrine de quem entende, não indicação isenta — o filtro aqui é que
+ os dois bebem o que vendem. <b>Preços vistos em 17 set 2026</b> nos links — podem mudar.</p>
+ <div class="stats">
+  <div class="stat"><b>28</b><span>vinhos</span></div>
+  <div class="stat"><b>10</b><span>no ranking</span></div>
+  <div class="stat"><b>4</b><span>curadores</span></div>
+ </div>
+</header>
+
+<nav class="tabs" id="tabs">
+ <button class="tab on" data-t="rank">🏆 Ranking</button>
+ <button class="tab" data-t="todos">🍷 Todos por uva <span class="n">28</span></button>
+ <button class="tab" data-t="quem">👥 Curadores</button>
+</nav>
+
+<section id="sec-rank">
+ <p class="nota" style="margin-top:14px"><b>Critério do ranking:</b> primeiro o que o Angelo
+ indicou nominalmente em post; depois a melhor relação preço-qualidade de cada faixa, na
+ minha leitura das duas vitrines. O fundo do card é o preço:
+ <span class="sw" style="background:#2F8A57;display:inline-block;width:10px;height:10px;border-radius:3px"></span> até R$ 100 ·
+ <span class="sw" style="background:#D97A3E;display:inline-block;width:10px;height:10px;border-radius:3px"></span> R$ 100–200 ·
+ <span class="sw" style="background:#8A93A0;display:inline-block;width:10px;height:10px;border-radius:3px"></span> R$ 200–350 ·
+ <span class="sw" style="background:#B98A1C;display:inline-block;width:10px;height:10px;border-radius:3px"></span> R$ 350+</p>
+ <div class="grid">
+<article class="c pr1" data-uva="malbec">
+<span class="badge duo">#1 do ranking</span>
+<div class="cn">Huentala Zorro Salvaje Malbec</div>
+<div class="cloc"><span class="t">Malbec</span> · Argentina</div>
+<div class="cesp"><b>Huentala · Gualtallary, Vale de Uco</b></div>
+<div class="cesp">Gualtallary — o terroir caro de Mendoza — por R$ 55: fruta negra, grafite, acidez viva</div>
+<div class="tags"><span class="tag yen">R$ 55</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-huentala-zorro-salvage-malbec-750ml" target="_blank" rel="noopener">comprar · R$ 55</a></div>
+</article>
+<article class="c pr1" data-uva="malbec">
+<span class="badge duo">#2 do ranking</span>
+<div class="cn">Trapiche Vineyards Malbec</div>
+<div class="cloc"><span class="t">Malbec</span> · Argentina</div>
+<div class="cesp"><b>Trapiche · Mendoza</b></div>
+<div class="cesp">O malbec de todo dia — ameixa, violeta, tanino macio; difícil errar nesse preço</div>
+<div class="tags"><span class="tag yen">R$ 47</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-trapiche-vineyards-malbec" target="_blank" rel="noopener">comprar · R$ 47</a></div>
+</article>
+<article class="c pr2" data-uva="pinot">
+<span class="badge duo">#3 do ranking</span><span class="badge pin">Pinot</span>
+<div class="cn">Familia Schroeder Saurus Pinot Noir</div>
+<div class="cloc"><span class="t">Pinot Noir</span> · Argentina</div>
+<div class="cesp"><b>Familia Schroeder · San Patricio del Chañar, Patagônia</b></div>
+<div class="cesp">O pinot patagônico de entrada — framboesa, morango, terra; 70% inox pra manter a fruta</div>
+<div class="tags"><span class="tag yen">R$ 129</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-familia-schroeder-pinot-noir-saurus" target="_blank" rel="noopener">comprar · R$ 129</a></div>
+</article>
+<article class="c pr3" data-uva="blend">
+<span class="badge duo">#4 do ranking</span>
+<div class="cn">Bebber Cuvée Maragato</div>
+<div class="cloc"><span class="t">Corte tinto</span> · Brasil</div>
+<div class="cesp"><b>Família Bebber · corte de 6 uvas, 3 terroirs gaúchos</b></div>
+<div class="cesp">O &#x27;excelente custo-benefício&#x27; do post dele — Merlot+Franc da Serra, Marselan+Touriga do Sudeste, Tannat+Cabernet da Campanha; 18 meses em carvalho e concreto</div>
+<div class="tags"><span class="tag yen">R$ 299</span></div>
+<div class="who"><span class="lbl">indicado em post pelo Angelo</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/produto/vinho-familia-bebber-cuvee-maragato-750ml.html" target="_blank" rel="noopener">comprar · R$ 299</a> · <a href="https://www.instagram.com/p/DdNC6yLxPvU/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</article>
+<article class="c " data-uva="franc">
+<span class="badge duo">#5 do ranking</span>
+<div class="cn">Huentala La Isabel Cabernet Franc</div>
+<div class="cloc"><span class="t">Cabernet Franc</span> · Argentina</div>
+<div class="cesp"><b>Huentala Wines · Gualtallary, Vale de Uco</b></div>
+<div class="cesp">&#x27;Não é suco de madeira: tem acidez, tem fruta&#x27; — a indicação mais quente do Angelo agora. Preço na loja dele via direct (comenta HUENTALA no post)</div>
+<div class="tags"><span class="tag">preço no direct dele</span></div>
+<div class="who"><span class="lbl">indicado em post pelo Angelo</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.instagram.com/p/DdPsDmqOOFk/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</article>
+<article class="c pr2" data-uva="malbec">
+<span class="badge duo">#6 do ranking</span>
+<div class="cn">Luigi Bosca Malbec</div>
+<div class="cloc"><span class="t">Malbec</span> · Argentina</div>
+<div class="cesp"><b>Luigi Bosca · Mendoza</b></div>
+<div class="cesp">O clássico de família — 12 meses de carvalho francês, alcaçuz e violeta</div>
+<div class="tags"><span class="tag yen">R$ 159,90</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-luigi-bosca-malbec-2021" target="_blank" rel="noopener">comprar · R$ 159,90</a></div>
+</article>
+<article class="c pr2" data-uva="pinot">
+<span class="badge duo">#7 do ranking</span><span class="badge pin">Pinot</span>
+<div class="cn">Guardiã da Sabedoria Pinot Noir</div>
+<div class="cloc"><span class="t">Pinot Noir</span> · Brasil</div>
+<div class="cesp"><b>Vanessa K Medin · RS</b></div>
+<div class="cesp">Pinot natural brasileiro de produtora autoral — o jeito Zero Onze de beber pinot em casa</div>
+<div class="tags"><span class="tag yen">R$ 195</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/brasil" target="_blank" rel="noopener">comprar · R$ 195</a></div>
+</article>
+<article class="c pr2" data-uva="malbec">
+<span class="badge duo">#8 do ranking</span>
+<div class="cn">Wapisa Malbec</div>
+<div class="cloc"><span class="t">Malbec</span> · Argentina</div>
+<div class="cesp"><b>Wapisa · Rio Negro, Patagônia atlântica</b></div>
+<div class="cesp">Malbec com brisa de mar — o lado atlântico da Patagônia, mais fresco que Mendoza</div>
+<div class="tags"><span class="tag yen">R$ 174</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-argentino-wapisa-malbec-750ml" target="_blank" rel="noopener">comprar · R$ 174</a></div>
+</article>
+<article class="c pr3" data-uva="blend">
+<span class="badge duo">#9 do ranking</span>
+<div class="cn">Amalaya Gran Corte</div>
+<div class="cloc"><span class="t">Corte de altitude</span> · Argentina</div>
+<div class="cesp"><b>Amalaya · Salta, +1.800 m</b></div>
+<div class="cesp">Malbec de altitude extrema de Salta — cereja, especiarias, chocolate</div>
+<div class="tags"><span class="tag yen">R$ 209,90</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/amalaya-gran-corte-2021" target="_blank" rel="noopener">comprar · R$ 209,90</a></div>
+</article>
+<article class="c pr4" data-uva="malbec">
+<span class="badge duo">#10 do ranking</span>
+<div class="cn">Bodega Noemía J. Alberto Malbec</div>
+<div class="cloc"><span class="t">Malbec</span> · Argentina</div>
+<div class="cesp"><b>Noemía · Mainqué, Rio Negro — vinhas de 1955</b></div>
+<div class="cesp">97 pontos Descorchados, orgânico e biodinâmico, vinhas de 70 anos — o &#x27;vale cada centavo&#x27;</div>
+<div class="tags"><span class="tag yen">R$ 399</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-bodega-noemia-j-alberto-malbec" target="_blank" rel="noopener">comprar · R$ 399</a></div>
+</article>
+ </div>
+</section>
+
+<section id="sec-todos" hidden>
+ <div class="chips"><span class="flab">Uva</span><button class="chip" data-uva="pinot">Pinot Noir</button><button class="chip" data-uva="malbec">Malbec</button><button class="chip" data-uva="franc">Cabernet Franc</button><button class="chip" data-uva="blend">Blends e cortes</button><button class="chip" data-uva="outros">Outros tintos</button><button class="chip" data-uva="branco">Brancos, laranja e rosé</button><button class="chip" data-uva="borbulha">Borbulhas</button></div>
+ <div class="legend">O fundo do card é o preço:
+  <span class="sw" style="background:#2F8A57"></span>até R$ 100
+  <span class="sw" style="background:#D97A3E"></span>R$ 100–200
+  <span class="sw" style="background:#8A93A0"></span>R$ 200–350
+  <span class="sw" style="background:#B98A1C"></span>R$ 350+
+ </div>
+ <div class="grid" id="grid-todos">
+<article class="c pr1" data-uva="malbec">
+
+<div class="cn">Trapiche Vineyards Malbec</div>
+<div class="cloc"><span class="t">Malbec</span> · Argentina</div>
+<div class="cesp"><b>Trapiche · Mendoza</b></div>
+<div class="cesp">O malbec de todo dia — ameixa, violeta, tanino macio; difícil errar nesse preço</div>
+<div class="tags"><span class="tag yen">R$ 47</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-trapiche-vineyards-malbec" target="_blank" rel="noopener">comprar · R$ 47</a></div>
+</article>
+<article class="c pr1" data-uva="malbec">
+
+<div class="cn">Huentala Zorro Salvaje Malbec</div>
+<div class="cloc"><span class="t">Malbec</span> · Argentina</div>
+<div class="cesp"><b>Huentala · Gualtallary, Vale de Uco</b></div>
+<div class="cesp">Gualtallary — o terroir caro de Mendoza — por R$ 55: fruta negra, grafite, acidez viva</div>
+<div class="tags"><span class="tag yen">R$ 55</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-huentala-zorro-salvage-malbec-750ml" target="_blank" rel="noopener">comprar · R$ 55</a></div>
+</article>
+<article class="c pr2" data-uva="pinot">
+<span class="badge pin">Pinot</span>
+<div class="cn">Familia Schroeder Saurus Pinot Noir</div>
+<div class="cloc"><span class="t">Pinot Noir</span> · Argentina</div>
+<div class="cesp"><b>Familia Schroeder · San Patricio del Chañar, Patagônia</b></div>
+<div class="cesp">O pinot patagônico de entrada — framboesa, morango, terra; 70% inox pra manter a fruta</div>
+<div class="tags"><span class="tag yen">R$ 129</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-familia-schroeder-pinot-noir-saurus" target="_blank" rel="noopener">comprar · R$ 129</a></div>
+</article>
+<article class="c pr2" data-uva="malbec">
+
+<div class="cn">Luigi Bosca Malbec</div>
+<div class="cloc"><span class="t">Malbec</span> · Argentina</div>
+<div class="cesp"><b>Luigi Bosca · Mendoza</b></div>
+<div class="cesp">O clássico de família — 12 meses de carvalho francês, alcaçuz e violeta</div>
+<div class="tags"><span class="tag yen">R$ 159,90</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-luigi-bosca-malbec-2021" target="_blank" rel="noopener">comprar · R$ 159,90</a></div>
+</article>
+<article class="c pr2" data-uva="borbulha">
+
+<div class="cn">Vita Eterna Espumante Nature</div>
+<div class="cloc"><span class="t">Espumante nature</span> · Brasil</div>
+<div class="cesp"><b>Vita Eterna · RS</b></div>
+<div class="cesp">Nature brasileiro da casa — tem também a versão rosé pelo mesmo preço</div>
+<div class="tags"><span class="tag yen">R$ 168</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/brasil" target="_blank" rel="noopener">comprar · R$ 168</a></div>
+</article>
+<article class="c pr2" data-uva="pinot">
+<span class="badge pin">Pinot</span>
+<div class="cn">Valmarino Pinot Noir Double Terroir</div>
+<div class="cloc"><span class="t">Pinot Noir</span> · Brasil</div>
+<div class="cesp"><b>Valmarino · Encruzilhada do Sul + Pinto Bandeira</b></div>
+<div class="cesp">Pinot brasileiro de dois terroirs, 11 meses de barrica — a aposta nacional na uva</div>
+<div class="tags"><span class="tag yen">R$ 169,90</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-valmarino-pinot-noir-double-terroir" target="_blank" rel="noopener">comprar · R$ 169,90</a></div>
+</article>
+<article class="c pr2" data-uva="malbec">
+
+<div class="cn">Wapisa Malbec</div>
+<div class="cloc"><span class="t">Malbec</span> · Argentina</div>
+<div class="cesp"><b>Wapisa · Rio Negro, Patagônia atlântica</b></div>
+<div class="cesp">Malbec com brisa de mar — o lado atlântico da Patagônia, mais fresco que Mendoza</div>
+<div class="tags"><span class="tag yen">R$ 174</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-argentino-wapisa-malbec-750ml" target="_blank" rel="noopener">comprar · R$ 174</a></div>
+</article>
+<article class="c pr2" data-uva="pinot">
+<span class="badge pin">Pinot</span>
+<div class="cn">Guardiã da Sabedoria Pinot Noir</div>
+<div class="cloc"><span class="t">Pinot Noir</span> · Brasil</div>
+<div class="cesp"><b>Vanessa K Medin · RS</b></div>
+<div class="cesp">Pinot natural brasileiro de produtora autoral — o jeito Zero Onze de beber pinot em casa</div>
+<div class="tags"><span class="tag yen">R$ 195</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/brasil" target="_blank" rel="noopener">comprar · R$ 195</a></div>
+</article>
+<article class="c pr2" data-uva="outros">
+
+<div class="cn">Doce Liberdade Gamay</div>
+<div class="cloc"><span class="t">Gamay</span> · Brasil</div>
+<div class="cesp"><b>Vanessa K Medin · RS</b></div>
+<div class="cesp">Gamay leve e de gole fácil — pra quem gosta de Beaujolais, versão gaúcha</div>
+<div class="tags"><span class="tag yen">R$ 195</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/brasil" target="_blank" rel="noopener">comprar · R$ 195</a></div>
+</article>
+<article class="c pr3" data-uva="blend">
+
+<div class="cn">Amalaya Gran Corte</div>
+<div class="cloc"><span class="t">Corte de altitude</span> · Argentina</div>
+<div class="cesp"><b>Amalaya · Salta, +1.800 m</b></div>
+<div class="cesp">Malbec de altitude extrema de Salta — cereja, especiarias, chocolate</div>
+<div class="tags"><span class="tag yen">R$ 209,90</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/amalaya-gran-corte-2021" target="_blank" rel="noopener">comprar · R$ 209,90</a></div>
+</article>
+<article class="c pr3" data-uva="outros">
+
+<div class="cn">Instinto Selvagem Gamay</div>
+<div class="cloc"><span class="t">Gamay</span> · Brasil</div>
+<div class="cesp"><b>Vanessa K Medin · RS</b></div>
+<div class="cesp">O irmão mais selvagem do Doce Liberdade</div>
+<div class="tags"><span class="tag yen">R$ 250</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/brasil" target="_blank" rel="noopener">comprar · R$ 250</a></div>
+</article>
+<article class="c pr3" data-uva="malbec">
+
+<div class="cn">Power Malbec</div>
+<div class="cloc"><span class="t">Malbec</span> · Argentina</div>
+<div class="cesp"><b>La Imaginación al Poder · Mendoza</b></div>
+<div class="cesp">O malbec natural da casa argentina da Zero Onze — em promoção de R$ 350 por R$ 250</div>
+<div class="tags"><span class="tag yen">R$ 250</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/argentina" target="_blank" rel="noopener">comprar · R$ 250</a></div>
+</article>
+<article class="c pr3" data-uva="outros">
+
+<div class="cn">Power Merlot</div>
+<div class="cloc"><span class="t">Merlot</span> · Argentina</div>
+<div class="cesp"><b>La Imaginación al Poder · Mendoza</b></div>
+<div class="cesp">Merlot natural argentino — mesma promoção da linha</div>
+<div class="tags"><span class="tag yen">R$ 250</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/argentina" target="_blank" rel="noopener">comprar · R$ 250</a></div>
+</article>
+<article class="c pr3" data-uva="outros">
+
+<div class="cn">V de Bonarda</div>
+<div class="cloc"><span class="t">Bonarda</span> · Argentina</div>
+<div class="cesp"><b>La Imaginación al Poder · Mendoza</b></div>
+<div class="cesp">A uva que a Argentina bebe em casa e quase não exporta</div>
+<div class="tags"><span class="tag yen">R$ 250</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/argentina" target="_blank" rel="noopener">comprar · R$ 250</a></div>
+</article>
+<article class="c pr3" data-uva="branco">
+
+<div class="cn">Naranjo Mecánico</div>
+<div class="cloc"><span class="t">Chardonnay (laranja)</span> · Argentina</div>
+<div class="cesp"><b>La Imaginación al Poder · Mendoza</b></div>
+<div class="cesp">Chardonnay com casca — o laranja argentino pra abrir cabeça</div>
+<div class="tags"><span class="tag yen">R$ 250</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/argentina" target="_blank" rel="noopener">comprar · R$ 250</a></div>
+</article>
+<article class="c pr3" data-uva="branco">
+
+<div class="cn">Era dos Ventos Rosé</div>
+<div class="cloc"><span class="t">Rosé</span> · Brasil</div>
+<div class="cesp"><b>Era dos Ventos</b></div>
+<div class="cesp">Rosé natural brasileiro do portfólio</div>
+<div class="tags"><span class="tag yen">R$ 270</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/brasil" target="_blank" rel="noopener">comprar · R$ 270</a></div>
+</article>
+<article class="c pr3" data-uva="outros">
+
+<div class="cn">Vivente Virgula</div>
+<div class="cloc"><span class="t">Tinto leve</span> · Brasil</div>
+<div class="cesp"><b>Vivente · RS</b></div>
+<div class="cesp">O tinto de entrada da Vivente, a queridinha natural do RS</div>
+<div class="tags"><span class="tag yen">R$ 270</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/brasil" target="_blank" rel="noopener">comprar · R$ 270</a></div>
+</article>
+<article class="c pr3" data-uva="outros">
+
+<div class="cn">Arte da Vinha Hidro Vin de Soif</div>
+<div class="cloc"><span class="t">Tinto de sede</span> · Brasil</div>
+<div class="cesp"><b>Arte da Vinha · RS</b></div>
+<div class="cesp">Vin de soif — geladeira, copo, sem cerimônia</div>
+<div class="tags"><span class="tag yen">R$ 280</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/brasil" target="_blank" rel="noopener">comprar · R$ 280</a></div>
+</article>
+<article class="c pr3" data-uva="branco">
+
+<div class="cn">Vivente 11:11 Sauvignon Blanc</div>
+<div class="cloc"><span class="t">Sauvignon Blanc</span> · Brasil</div>
+<div class="cesp"><b>Vivente · RS</b></div>
+<div class="cesp">O branco numerológico da Vivente</div>
+<div class="tags"><span class="tag yen">R$ 280</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/brasil" target="_blank" rel="noopener">comprar · R$ 280</a></div>
+</article>
+<article class="c pr3" data-uva="franc">
+
+<div class="cn">Vivente Cabernet Franc</div>
+<div class="cloc"><span class="t">Cabernet Franc</span> · Brasil</div>
+<div class="cesp"><b>Vivente · RS</b></div>
+<div class="cesp">Franc natural brasileiro — pra comparar com o Huentala do Angelo</div>
+<div class="tags"><span class="tag yen">R$ 295</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/brasil" target="_blank" rel="noopener">comprar · R$ 295</a></div>
+</article>
+<article class="c pr3" data-uva="borbulha">
+
+<div class="cn">Vivente Pét-Nat Chardonnay/Pinot</div>
+<div class="cloc"><span class="t">Pét-nat</span> · Brasil</div>
+<div class="cesp"><b>Vivente · RS</b></div>
+<div class="cesp">A borbulha ancestral da casa — Chardonnay com Pinot Noir</div>
+<div class="tags"><span class="tag yen">R$ 295</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/brasil" target="_blank" rel="noopener">comprar · R$ 295</a></div>
+</article>
+<article class="c pr3" data-uva="malbec">
+
+<div class="cn">Huentala La Isabel Estate Malbec</div>
+<div class="cloc"><span class="t">Malbec</span> · Argentina</div>
+<div class="cesp"><b>Huentala · Tupungato-Gualtallary</b></div>
+<div class="cesp">O irmão maior do Zorro — 14 meses de carvalho francês, tanino sedoso</div>
+<div class="tags"><span class="tag yen">R$ 297</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-huentala-la-isabel-estate-malbec-750ml" target="_blank" rel="noopener">comprar · R$ 297</a></div>
+</article>
+<article class="c pr3" data-uva="blend">
+
+<div class="cn">Bebber Cuvée Maragato</div>
+<div class="cloc"><span class="t">Corte tinto</span> · Brasil</div>
+<div class="cesp"><b>Família Bebber · corte de 6 uvas, 3 terroirs gaúchos</b></div>
+<div class="cesp">O &#x27;excelente custo-benefício&#x27; do post dele — Merlot+Franc da Serra, Marselan+Touriga do Sudeste, Tannat+Cabernet da Campanha; 18 meses em carvalho e concreto</div>
+<div class="tags"><span class="tag yen">R$ 299</span></div>
+<div class="who"><span class="lbl">indicado em post pelo Angelo</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/produto/vinho-familia-bebber-cuvee-maragato-750ml.html" target="_blank" rel="noopener">comprar · R$ 299</a> · <a href="https://www.instagram.com/p/DdNC6yLxPvU/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</article>
+<article class="c pr3" data-uva="pinot">
+<span class="badge pin">Pinot</span>
+<div class="cn">Arte da Vinha Pinot Noir Pot Pourri</div>
+<div class="cloc"><span class="t">Pinot Noir</span> · Brasil</div>
+<div class="cesp"><b>Arte da Vinha · RS</b></div>
+<div class="cesp">Pinot natural brasileiro — o mais interessante do portfólio pra quem é de pinot</div>
+<div class="tags"><span class="tag yen">R$ 320</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/brasil" target="_blank" rel="noopener">comprar · R$ 320</a></div>
+</article>
+<article class="c pr4" data-uva="branco">
+
+<div class="cn">Vivente Chardonnay</div>
+<div class="cloc"><span class="t">Chardonnay</span> · Brasil</div>
+<div class="cesp"><b>Vivente · RS</b></div>
+<div class="cesp">O chardonnay que fez o nome da Vivente</div>
+<div class="tags"><span class="tag yen">R$ 350</span></div>
+<div class="who"><span class="lbl">importadora do Raul (Zero Onze)</span> · <b>@raulloreto</b></div>
+<div class="acts"><a href="https://glouglou.com.br/collections/brasil" target="_blank" rel="noopener">comprar · R$ 350</a></div>
+</article>
+<article class="c pr4" data-uva="malbec">
+
+<div class="cn">Bodega Noemía J. Alberto Malbec</div>
+<div class="cloc"><span class="t">Malbec</span> · Argentina</div>
+<div class="cesp"><b>Noemía · Mainqué, Rio Negro — vinhas de 1955</b></div>
+<div class="cesp">97 pontos Descorchados, orgânico e biodinâmico, vinhas de 70 anos — o &#x27;vale cada centavo&#x27;</div>
+<div class="tags"><span class="tag yen">R$ 399</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-bodega-noemia-j-alberto-malbec" target="_blank" rel="noopener">comprar · R$ 399</a></div>
+</article>
+<article class="c pr4" data-uva="blend">
+
+<div class="cn">Viñedos de Alcohuaz RHU</div>
+<div class="cloc"><span class="t">Syrah · Petite Sirah · Garnacha</span> · Chile</div>
+<div class="cesp"><b>Alcohuaz · Vale do Elqui — Marcelo Retamal</b></div>
+<div class="cesp">O Chile de altitude sem maquiagem — 32 meses em fudres; Parker chamou de a versão mais fina do RHU</div>
+<div class="tags"><span class="tag yen">R$ 520</span></div>
+<div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-vinedos-de-alcohuaz-rhu-2018" target="_blank" rel="noopener">comprar · R$ 520</a></div>
+</article>
+<article class="c " data-uva="franc">
+
+<div class="cn">Huentala La Isabel Cabernet Franc</div>
+<div class="cloc"><span class="t">Cabernet Franc</span> · Argentina</div>
+<div class="cesp"><b>Huentala Wines · Gualtallary, Vale de Uco</b></div>
+<div class="cesp">&#x27;Não é suco de madeira: tem acidez, tem fruta&#x27; — a indicação mais quente do Angelo agora. Preço na loja dele via direct (comenta HUENTALA no post)</div>
+<div class="tags"><span class="tag">preço no direct dele</span></div>
+<div class="who"><span class="lbl">indicado em post pelo Angelo</span> · <b>@angeloluchesejr</b></div>
+<div class="acts"><a href="https://www.instagram.com/p/DdPsDmqOOFk/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</article>
+ </div>
+</section>
+
+<section id="sec-quem" hidden>
+ <div class="people">
+  <div class="p"><b>Angelo Luchese Jr</b> <span class="h">@angeloluchesejr</span>
+   <div class="d">685 mil seguidores te ajudando a "escolher sem errar e fugir de vinho caro
+   que só tem nome". Foco em custo-benefício de verdade, muito Argentina e Brasil.</div>
+   <div class="disc">Vende: a Cainelli Bebidas (Bento Gonçalves, 58 anos) é da família.
+   Cupom angelo15. Leia como vitrine de quem entende.</div></div>
+  <div class="p"><b>Raul Loreto</b> <span class="h">@raulloreto · @zeroonzevins</span>
+   <div class="d">Importador (Zero Onze / glouglou.com.br) — vinhos naturais, orgânicos e
+   biodinâmicos. O portfólio LATAM dele é a porta de entrada pro natural brasileiro:
+   Vivente, Arte da Vinha, Vanessa K Medin.</div>
+   <div class="disc">Vende: é a importadora dele. Mesma regra do Angelo.</div></div>
+  <div class="p"><b>Gabi Fleming</b> <span class="h">@gabriellifleming</span>
+   <div class="d">Sommelière do Cepa, do círculo do Felipe. Mundo natural e serviço de sala —
+   as dicas LATAM dela entram aqui conforme ela indicar.</div></div>
+  <div class="p"><b>Terroir of Culture</b> <span class="h">@terroirofculture</span>
+   <div class="d">Educação de vinho de alto nível (French Wine Scholar, séries sobre regiões
+   e método tradicional). Pra entender o que está no copo — não é fonte de compra.</div></div>
+ </div>
+</section>
+
+<footer>
+ Outros guias: <a href="https://felipercarneiro-source.github.io/japao-guia/">Japão</a> ·
+ <a href="https://felipercarneiro-source.github.io/sp-guia/">São Paulo</a> ·
+ <a href="https://felipercarneiro-source.github.io/salvos/">Índice de viagens</a><br>
+ Curadoria pessoal de @feliperacarneiro. Preços conferidos em 17 set 2026; nada aqui é publi meu.
+</footer>
+</div>
+
+<script>
+const tabs=document.querySelectorAll('.tab');
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(x=>x.classList.toggle('on',x===t));
+  ['rank','todos','quem'].forEach(s=>{
+    document.getElementById('sec-'+s).hidden = (t.dataset.t!==s);
+  });
+}));
+let uvaOn=null;
+document.querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click',()=>{
+  uvaOn = (uvaOn===ch.dataset.uva)?null:ch.dataset.uva;
+  document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x.dataset.uva===uvaOn));
+  document.querySelectorAll('#grid-todos .c').forEach(c=>{
+    c.hidden = uvaOn!==null && c.dataset.uva!==uvaOn;
+  });
+}));
+</script>
+</body>
+</html>
