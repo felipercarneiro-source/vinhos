@@ -60,6 +60,14 @@ h1{font-family:"Zen Old Mincho",Georgia,serif;font-weight:900;letter-spacing:-.0
 .chip:hover{border-color:var(--ai);color:var(--ink)}
 .chip.on{border-color:var(--ai);background:var(--ai);color:#fff}
 .badge.nat{background:#2F6455;color:#fff;border-color:#2F6455}
+.qps{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px}
+.qp{font:inherit;font-size:15px;font-weight:700;padding:11px 16px;border-radius:12px;
+  border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;box-shadow:var(--shadow)}
+.qp:hover{border-color:var(--ai)}
+.qn{font-size:12px;font-weight:700;color:var(--ink3);background:var(--paper2);
+  border-radius:999px;padding:2px 8px}
+.dest{scroll-margin-top:76px}
 .legend{margin:12px 0 14px;font-size:12.5px;color:var(--ink3)}
 .legend .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin:0 4px 0 10px;vertical-align:-1px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-top:12px}
@@ -682,6 +690,7 @@ footer a{color:var(--ink2)}
 </section>
 
 <section id="sec-pais">
+ <div class="qps"><button class="qp" data-go="p-ar">🇦🇷 Argentina <span class="qn">18</span></button><button class="qp" data-go="p-cl">🇨🇱 Chile <span class="qn">17</span></button><button class="qp" data-go="p-uy">🇺🇾 Uruguai <span class="qn">9</span></button><button class="qp" data-go="p-br">🇧🇷 Brasil <span class="qn">35</span></button><button class="qp" data-go="p-fora">🌍 De fora <span class="qn">7</span></button></div>
  <div class="legend" style="margin-top:14px">Dentro de cada país, primeiro o que foi <b>nomeado
  pelo Angelo</b> (post ou direct), depois a vitrine dos curadores. O fundo do card é o preço:
   <span class="sw" style="background:#2F8A57"></span>até R$ 100
@@ -689,7 +698,7 @@ footer a{color:var(--ink2)}
   <span class="sw" style="background:#8A93A0"></span>R$ 200–350
   <span class="sw" style="background:#B98A1C"></span>R$ 350+
  </div>
-<section class="dest"><h3 class="dh">Argentina <small>18 vinhos</small></h3><p class="cnota">O território do Angelo: malbec, francs e blends de Mendoza a Salta.</p><div class="grid"><article class="c pr3" data-uva="malbec">
+<section class="dest" id="p-ar"><h3 class="dh">Argentina <small>18 vinhos</small></h3><p class="cnota">O território do Angelo: malbec, francs e blends de Mendoza a Salta.</p><div class="grid"><article class="c pr3" data-uva="malbec">
 <span class="badge nat">natural</span>
 <div class="cn">Raquis Las Bases Malbec by Andres Vignoni</div>
 <div class="cloc"><span class="t">Malbec (com Franc/Merlot/Cab)</span> · Argentina</div>
@@ -868,7 +877,7 @@ footer a{color:var(--ink2)}
 <div class="tags"><span class="tag yen">R$ 399</span></div>
 <div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
 <div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-bodega-noemia-j-alberto-malbec" target="_blank" rel="noopener">comprar · R$ 399</a></div>
-</article></div></section><section class="dest"><h3 class="dh">Chile <small>17 vinhos</small></h3><p class="cnota">Agora com o Itata que faltava — País, Cariñena e Moscatel de Rulo de vinhas velhas, naturais, do portfólio da Cellar. Os dois que eu provei e gostei abrem a seção — e a coincidência é boa: a Viña VIK processou a KIM no Chile por achar o rótulo parecido demais com o dela, e eu gostei dos dois. Além deles: três pinots (minha uva), o Elqui de altitude do Retamal e o carignan de R$ 90. Da VIK dá pra subir até o La Piu Belle (R$ 483 na Super Adega) e o ícone VIK (R$ 907 na Cia do Vinho) — fora da régua de custo-benefício, mas ficam o registro.</p><div class="grid"><article class="c pr1" data-uva="outros">
+</article></div></section><section class="dest" id="p-cl"><h3 class="dh">Chile <small>17 vinhos</small></h3><p class="cnota">Agora com o Itata que faltava — País, Cariñena e Moscatel de Rulo de vinhas velhas, naturais, do portfólio da Cellar. Os dois que eu provei e gostei abrem a seção — e a coincidência é boa: a Viña VIK processou a KIM no Chile por achar o rótulo parecido demais com o dela, e eu gostei dos dois. Além deles: três pinots (minha uva), o Elqui de altitude do Retamal e o carignan de R$ 90. Da VIK dá pra subir até o La Piu Belle (R$ 483 na Super Adega) e o ícone VIK (R$ 907 na Cia do Vinho) — fora da régua de custo-benefício, mas ficam o registro.</p><div class="grid"><article class="c pr1" data-uva="outros">
 
 <div class="cn">KIM Gran Reserva Carménère</div>
 <div class="cloc"><span class="t">Carménère</span> · Chile</div>
@@ -1037,7 +1046,7 @@ footer a{color:var(--ink2)}
 <div class="tags"><span class="tag yen">R$ 520</span></div>
 <div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
 <div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-vinedos-de-alcohuaz-rhu-2018" target="_blank" rel="noopener">comprar · R$ 520</a></div>
-</article></div></section><section class="dest"><h3 class="dh">Uruguai <small>9 vinhos</small></h3><p class="cnota">Tannat de verdade (Garzón, Bouza, Deicas) e o projeto Michelini i Mufatto à beira do Atlântico — todos com nota ou motivo.</p><div class="grid"><article class="c pr2" data-uva="tannat">
+</article></div></section><section class="dest" id="p-uy"><h3 class="dh">Uruguai <small>9 vinhos</small></h3><p class="cnota">Tannat de verdade (Garzón, Bouza, Deicas) e o projeto Michelini i Mufatto à beira do Atlântico — todos com nota ou motivo.</p><div class="grid"><article class="c pr2" data-uva="tannat">
 
 <div class="cn">Garzón Reserva Tannat</div>
 <div class="cloc"><span class="t">Tannat</span> · Uruguai</div>
@@ -1126,7 +1135,7 @@ footer a{color:var(--ink2)}
 <div class="tags"><span class="tag yen">R$ 695</span></div>
 <div class="who"><span class="lbl">prateleira do Angelo (loja da família)</span> · <b>@angeloluchesejr</b></div>
 <div class="acts"><a href="https://www.cainellibebidas.com.br/vinho-bouza-chardonnay-albarino-coco" target="_blank" rel="noopener">comprar · R$ 695</a></div>
-</article></div></section><section class="dest"><h3 class="dh">Brasil <small>35 vinhos</small></h3><p class="cnota">Aqui fica tudo junto — prateleira do Angelo, naturais do Raul, Pardinho de Beber e os premiados. O TOP 20 Brasil tem aba própria, e os espumantes, capítulo à parte.</p><div class="grid"><article class="c pr3" data-uva="blend">
+</article></div></section><section class="dest" id="p-br"><h3 class="dh">Brasil <small>35 vinhos</small></h3><p class="cnota">Aqui fica tudo junto — prateleira do Angelo, naturais do Raul, Pardinho de Beber e os premiados. O TOP 20 Brasil tem aba própria, e os espumantes, capítulo à parte.</p><div class="grid"><article class="c pr3" data-uva="blend">
 <span class="badge duo">#9 do TOP 20 Brasil</span>
 <div class="cn">Bebber Cuvée Maragato</div>
 <div class="cloc"><span class="t">Corte tinto</span> · Brasil</div>
@@ -1475,7 +1484,7 @@ footer a{color:var(--ink2)}
 <div class="tags"><span class="tag">preço no direct / sob consulta</span></div>
 <div class="who"><span class="lbl">nota alta em guia especializado — fonte no card</span></div>
 <div class="acts"><a href="https://espumantesdosul.com.br/products/casa-pedrucci-millesime-espumante-brut" target="_blank" rel="noopener">ver na loja</a></div>
-</article></div></section><section class="dest"><h3 class="dh">De fora da América do Sul <small>7 vinhos</small></h3><p class="cnota">Os convidados: o Pormenor Ginga que o Felipe pediu (Zero Onze) e os dois intrusos do top do Angelo — o Austo italiano e o Petit Vega espanhol.</p><div class="grid"><article class="c pr3" data-uva="outros">
+</article></div></section><section class="dest" id="p-fora"><h3 class="dh">De fora da América do Sul <small>7 vinhos</small></h3><p class="cnota">Os convidados: o Pormenor Ginga que o Felipe pediu (Zero Onze) e os dois intrusos do top do Angelo — o Austo italiano e o Petit Vega espanhol.</p><div class="grid"><article class="c pr3" data-uva="outros">
 
 <div class="cn">Austo Sangiovese Appassimento</div>
 <div class="cloc"><span class="t">Sangiovese appassimento</span> · Itália</div>
@@ -2510,6 +2519,10 @@ tabs.forEach(t=>t.addEventListener('click',()=>{
   ['pais','br','esp','lar','rank','todos','quem'].forEach(s=>{
     document.getElementById('sec-'+s).hidden = (t.dataset.t!==s);
   });
+}));
+document.querySelectorAll('.qp').forEach(b=>b.addEventListener('click',()=>{
+  const el=document.getElementById(b.dataset.go);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
 }));
 let uvaOn=null;
 document.querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click',()=>{
