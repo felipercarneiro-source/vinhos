@@ -59,6 +59,12 @@ h1{font-family:"Zen Old Mincho",Georgia,serif;font-weight:900;letter-spacing:-.0
   border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
 .chip:hover{border-color:var(--ai);color:var(--ink)}
 .chip.on{border-color:var(--ai);background:var(--ai);color:#fff}
+.pbar{margin:14px 0 2px}
+.pchip{font:inherit;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.pchip:hover{border-color:var(--ai);color:var(--ink)}
+.pchip.on{border-color:var(--ai);background:var(--ai);color:#fff}
+.pchip i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.pcount{font-size:12px;color:var(--ink3);margin-left:6px}
 .badge.nat{background:#2F6455;color:#fff;border-color:#2F6455}
 .qps{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px}
 .qp{font:inherit;font-size:15px;font-weight:700;padding:11px 16px;border-radius:12px;
@@ -146,6 +152,7 @@ footer a{color:var(--ink2)}
  <button class="tab" data-t="quem">👥 Curadores</button>
  <button class="tab" data-t="onde">🍷 Onde beber</button>
 </nav>
+<div class="chips pbar" id="pbar"><span class="flab">Preço</span><button class="pchip on" data-fx="">Todos</button><button class="pchip" data-fx="1"><i style="background:#2F8A57"></i>até R$ 100</button><button class="pchip" data-fx="2"><i style="background:#D97A3E"></i>R$ 100–200</button><button class="pchip" data-fx="3"><i style="background:#8A93A0"></i>R$ 200–350</button><button class="pchip" data-fx="4"><i style="background:#B98A1C"></i>R$ 350+</button><button class="pchip" data-fx="0">sem preço no BR</button><span class="pcount" id="pcount"></span></div>
 
 <section id="sec-br" hidden>
  <p class="nota" style="margin-top:14px"><b>Vinte brasileiros, sem espumante</b> — esses
@@ -3873,13 +3880,40 @@ document.querySelectorAll('.qp').forEach(b=>b.addEventListener('click',()=>{
   const el=document.getElementById(b.dataset.go);
   if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
 }));
-let uvaOn=null;
+let uvaOn=null, fxOn=null;
+/* faixa de preço lida do próprio card (tag "R$ …"); sem preço no BR = faixa 0 */
+document.querySelectorAll('.c').forEach(c=>{
+  const t=c.querySelector('.tag.yen'); let f=0;
+  if(t){const m=t.textContent.match(/\d[\d.]*(?:,\d+)?/);
+    if(m){const v=parseFloat(m[0].replace(/\./g,'').replace(',','.')); f=v<=100?1:v<=200?2:v<350?3:4;}}
+  c.dataset.fx=f;
+  if(f){c.classList.remove('pr1','pr2','pr3','pr4'); c.classList.add('pr'+f);}
+});
+function aplicar(){
+  document.querySelectorAll('.c').forEach(c=>{
+    c.hidden = (!!c.closest('#grid-todos') && uvaOn!==null && c.dataset.uva!==uvaOn) || (fxOn!==null && c.dataset.fx!==fxOn);
+  });
+  document.querySelectorAll('section.dest').forEach(s=>{
+    s.hidden = fxOn!==null && !s.querySelector('.c:not([hidden])');
+  });
+  const ativa=document.querySelector('section[id^="sec-"]:not([hidden])');
+  const n=ativa?ativa.querySelectorAll('.c:not([hidden])').length:0;
+  document.getElementById('pcount').textContent = fxOn===null ? '' : (n===0?'nenhum vinho nesta faixa aqui':n+(n===1?' vinho':' vinhos')+' nesta aba');
+}
+document.querySelectorAll('.pchip').forEach(b=>b.addEventListener('click',()=>{
+  const v=b.dataset.fx===''?null:b.dataset.fx;
+  fxOn=(fxOn===v)?null:v;
+  document.querySelectorAll('.pchip').forEach(x=>x.classList.toggle('on',(fxOn===null&&x.dataset.fx==='')||x.dataset.fx===fxOn));
+  aplicar();
+}));
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  document.getElementById('pbar').hidden=(t.dataset.t==='onde'||t.dataset.t==='quem');
+  aplicar();
+}));
 document.querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click',()=>{
   uvaOn = (uvaOn===ch.dataset.uva)?null:ch.dataset.uva;
   document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x.dataset.uva===uvaOn));
-  document.querySelectorAll('#grid-todos .c').forEach(c=>{
-    c.hidden = uvaOn!==null && c.dataset.uva!==uvaOn;
-  });
+  aplicar();
 }));
 </script>
 </body>
